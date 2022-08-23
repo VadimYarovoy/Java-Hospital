@@ -6,10 +6,15 @@ import com.example.hospital.entity.People;
 import java.util.List;
 
 public interface PeopleService {
-    List<People> findPeopleByDiagnosisName(String name);
     People findById(int id);
     void deleteById(int id);
     void add(PeopleDto peopleDto);
+    People updateById(Integer id, PeopleDto person);
+    List<People> findPeopleByDiagnosisName(String name);
+    List<People> findPeopleByDiagnosisId(Integer id);
+    List<People> findPeopleByWardName(String name);
+    List<People> findPeopleByWardId(Integer id);
 
-    People updateById(Integer id, People person);
+    List<People> findAll();
+
 }

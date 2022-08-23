@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import com.example.hospital.repository.DiagnosisRepository;
 import com.example.hospital.repository.PeopleRepository;
 import com.example.hospital.repository.WardsRepository;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -23,6 +25,11 @@ public class HospitalApplication {
         SpringApplication.run(HospitalApplication.class, args);
     }
 
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    };
     @Bean
     public CommandLineRunner test(
             PeopleRepository peopleRepository,
@@ -30,26 +37,7 @@ public class HospitalApplication {
             DiagnosisRepository diagnosisRepository
     ) {
         return args -> {
-            /*Diagnosis diagnos = new Diagnosis("Волчанка");
-            diagnosisRepository.save(diagnos);
-            logger.info(diagnos.toString());*/
 
-            /*Wards ward = new Wards("номер 6", 5);
-            wardsRepository.save(ward);
-
-            Diagnosis diagnos = diagnosisRepository.findById(2).get();
-
-            People person = new People("Иван", "Иванов", "Иванович",ward,diagnos);
-            peopleRepository.save(person);
-            logger.info(ward.toString());
-            logger.info(diagnos.toString());
-            logger.info(person.toString());*/
-
-            /*List<People> people = (List<People>) peopleRepository.findPeopleByDiagnosisName("Волчанка");
-
-            for (People man: people) {
-                logger.info(man.toString());
-            }*/
         };
     }
 }
